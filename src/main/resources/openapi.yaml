@@ -1,0 +1,40 @@
+openapi: 3.0.0
+info:
+  title: Mi API REST
+  description: Descripción de mi API REST
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+    description: Servidor local
+paths:
+  /api/token:
+    post:
+      summary: Generar token para tarjeta
+      operationId: getToken
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Tarjeta'
+      responses:
+        '200':
+          description: Token generado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+components:
+  schemas:
+    Tarjeta:
+      type: object
+      properties:
+        numeroTarjeta:
+          type: string
+        id:
+          type: integer
+    TokenResponse:
+      type: object
+      properties:
+        token:
+          type: string
